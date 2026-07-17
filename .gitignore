@@ -1,0 +1,7 @@
+.venv-sophia/
+faiss_index_sophia/
+logs/
+__pycache__/
+.env
+.claude/
+.agents/
