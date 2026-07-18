@@ -150,7 +150,7 @@ Citando la documentación oficial donde encontró la respuesta:
 
 ### Capturas
 
-<!-- TODO: agregar captura de la interfaz -->
+https://github.com/user-attachments/assets/4033a672-9d5d-45a0-91a2-dec11e710ced
 
 ## ![emoji](assets/emoji.png) Estructura del proyecto
 
