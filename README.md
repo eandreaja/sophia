@@ -6,15 +6,15 @@
 <br>
 ![FAISS](https://img.shields.io/badge/FAISS-vector%20search-lightgrey) ![Streamlit](https://img.shields.io/badge/Streamlit-UI-FF4B4B) ![Status](https://img.shields.io/badge/status-en%20desarrollo-yellow)
 
-> AI Agent que recibe un error técnico de LangChain, LangGraph, RAG, FAISS, Cohere o Streamlit, busca contexto relevante en documentación oficial indexada mediante búsqueda semántica, y devuelve una solución explicada por Claude — todo desde una interfaz web simple.
+> AI Agent que recibe un error técnico de LangChain, LangGraph, RAG, FAISS, Cohere o Streamlit, busca contexto relevante en documentación oficial indexada mediante búsqueda semántica, y devuelve una solución explicada por Claude, todo desde una interfaz web simple.
 
-* Última verificación: 15 de julio de 2026.
+* Última verificación: 17 de julio de 2026.
 
 ## ![emoji](assets/emoji.png) Tabla de contenidos
 
 <!-- no toc -->
 * [Un problema real, universal y con un caso de uso clarísimo](#-un-problema-real-universal-y-con-un-caso-de-uso-clarísimo)
-* [Lo que hace Sophia](#-lo-que-hace-sophia)
+* [Lo que hace SophIA](#-lo-que-hace-sophia)
 * [Arquitectura](#-arquitectura)
   * [Pipeline](#pipeline)
 * [Instalación](#-instalación)
@@ -31,11 +31,11 @@
 
 ## ![emoji](assets/emoji.png) Un problema real, universal y con un caso de uso clarísimo
 
-Cuando trabajas con LangChain, LangGraph, RAG, FAISS, Cohere, Streamlit o cualquier framework del ecosistema, los errores son crípticos, la documentación está dispersa y en la web encuentras respuestas que no siempre funcionan, incluso pueden confundir más. Varias pestañas abiertas, un video de YouTube aquí y otro allá. Acudes a una IA entrenada con información, algunas veces desactualizada. Pierdes horas en algo que debería tomar minutos.
+Cuando trabajas con LangChain, LangGraph, RAG, FAISS, Cohere, Streamlit o cualquier framework del ecosistema, los errores son crípticos, la documentación está dispersa y en la web encuentras respuestas que no siempre funcionan, incluso pueden confundir más. Varias pestañas abiertas, un video de YouTube aquí y otro allá. Acudes a una AI entrenada con información, algunas veces desactualizada. Pierdes horas en algo que debería tomar minutos.
 
-## ![emoji](assets/emoji.png) Lo que hace Sophia
+## ![emoji](assets/emoji.png) Lo que hace SophIA
 
-Le pegas un error o le haces una pregunta técnica, y Sophia:
+Le pegas un error o le haces una pregunta técnica, y SophIA:
 
 * **Busca en documentación oficial indexada** → LangChain, LangGraph y conceptos de RAG.
 * **Recupera los fragmentos más relevantes** → mediante búsqueda semántica con FAISS.
@@ -44,7 +44,7 @@ Le pegas un error o le haces una pregunta técnica, y Sophia:
 
 ## ![emoji](assets/emoji.png) Arquitectura
 
-Sophia sigue un pipeline RAG clásico, con Claude como motor de generación:
+SophIA sigue un pipeline RAG clásico, con Claude como motor de generación:
 
 | Capa | Tecnología | Qué hace |
 | --- | --- | --- |
@@ -52,7 +52,7 @@ Sophia sigue un pipeline RAG clásico, con Claude como motor de generación:
 | Fragmentación | LangChain Text Splitters | Divide los documentos en fragmentos manejables |
 | Embeddings | Cohere (`embed-multilingual-v3.0`) | Convierte fragmentos y preguntas en vectores |
 | Recuperación | FAISS | Búsqueda semántica por similitud vectorial |
-| Generación | **Claude (Haiku 4.5)** | Razona sobre el contexto recuperado y redacta la respuesta |
+| Generación | **Claude (Haiku 4.5)** | Analiza el contexto recuperado, explica la causa del error y propone una solución, con guardarraíles de alcance temático |
 | Orquestación | LangChain (LCEL) | Conecta retriever → prompt → LLM en una sola cadena |
 | Trazabilidad | LangSmith | Registra cada ejecución para depuración y observabilidad |
 | Interfaz | Streamlit | Chat web con historial de sesión, fuentes citadas y feedback |
@@ -77,20 +77,20 @@ git clone https://github.com/eandreaja/sophia.git
 cd sophia
 ```
 
-2. Crea y activa un entorno virtual:
+1. Crea y activa un entorno virtual:
 
 ```bash
 python -m venv venv
 venv\Scripts\activate
 ```
 
-3. Instala las dependencias:
+1. Instala las dependencias:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-4. Configura tus variables de entorno:
+1. Configura tus variables de entorno:
 
 ```bash
 cp .env.example .env
@@ -100,23 +100,23 @@ cp .env.example .env
 
    Luego edita `.env` con tus propias keys:
 
-   | Variable              | Descripción                           |
-   |-----------------------|----------------------------------------|
-   | `ANTHROPIC_API_KEY`   | API key de Anthropic (Claude)         |
-   | `COHERE_API_KEY`      | API key de Cohere                     |
-   | `LANGSMITH_TRACING`   | Activa el tracing (`true`/`false`)    |
-   | `LANGSMITH_ENDPOINT`  | Endpoint de LangSmith                 |
-   | `LANGSMITH_API_KEY`   | API key de LangSmith                  |
-   | `LANGSMITH_PROJECT`   | Nombre del proyecto en LangSmith      |
-   | `USER_AGENT`          | Identificador para las peticiones de scraping |
+   | Variable              | Descripción                              |
+   |-----------------------|------------------------------------------|
+   | `ANTHROPIC_API_KEY`   | API key de Anthropic (Claude)            |
+   | `COHERE_API_KEY`      | API key de Cohere                        |
+   | `LANGSMITH_TRACING`   | Activa el tracing (`true`/`false`)       |
+   | `LANGSMITH_ENDPOINT`  | Endpoint de LangSmith                    |
+   | `LANGSMITH_API_KEY`   | API key de LangSmith                     |
+   | `LANGSMITH_PROJECT`   | Nombre del proyecto en LangSmith         |
+   | `USER_AGENT`          | Identificador parapeticiones de scraping |
 
-5. Construye el índice de documentos (solo la primera vez, o al actualizar `urls.py`):
+1. Construye el índice de documentos (solo la primera vez, o al actualizar `urls.py`):
 
 ```bash
 python ingest.py
 ```
 
-6. Ejecuta la aplicación:
+1. Ejecuta la aplicación:
 
 ```bash
 streamlit run app.py
@@ -128,15 +128,25 @@ Una vez levantada la app (`streamlit run app.py`), se abre en tu navegador en `h
 
 ### Ejemplo: consultar un error
 
-<!-- TODO: reemplazar con una captura o transcripción real de la conversación -->
-
-Le escribes tu pregunta o el error directamente a Sophia:
+Le escribes tu pregunta o el error directamente a SophIA:
 
 ```text
 ¿Por qué me sale ModuleNotFoundError: No module named 'langchain.chains.retrieval_qa'?
 ```
 
-Y Sophia responde con el diagnóstico, citando la documentación oficial donde encontró la respuesta.
+![pregunta](assets/pregunta.png)
+
+Y SophIA responde con el diagnóstico:
+
+![diagnostico](assets/diagnostico.png)
+
+Te brinda las opciones encontradas para tu error:
+
+![opciones](assets/opciones.png)
+
+Citando la documentación oficial donde encontró la respuesta:
+
+![fuentes](assets/fuentes.png)
 
 ### Capturas
 
@@ -198,9 +208,9 @@ Este proyecto está bajo la licencia MIT — revisa el archivo [LICENSE](LICENSE
 
 ## ![emoji](assets/emoji.png) Contribución
 
-Este es un proyecto personal que nació de mi propio proceso de aprendizaje y especialización en RAG, LangChain, LangGraph, FAISS, Cohere y Streamlit, ante las fricciones reales que se presentan al orquestar la arquitectura de un agente de IA. Si tienes sugerencias o encuentras un bug, siéntete libre de abrir un [issue](https://github.com/eandreaja/sophia/issues).
+Este es un proyecto personal que nació de mi propio proceso de aprendizaje y especialización en RAG, LangChain, LangGraph, FAISS, Cohere y Streamlit, ante las fricciones reales que se presentan al orquestar la arquitectura de un AI Agent. Si tienes sugerencias o encuentras un bug, siéntete libre de abrir un [issue](https://github.com/eandreaja/sophia/issues).
 
-¡Gracias por compartir la misma inquietud que me impulsó a mí, y por contribuir a que Sophia cumpla el propósito por el que fue creada, con honestidad y confiabilidad técnica!
+¡Gracias por compartir la misma inquietud que me impulsó a mí, y por contribuir a que SophIA cumpla el propósito por el que fue creada, con honestidad y confiabilidad técnica!
 
 <p align="center">
   <img src="assets/sophia.png" alt="Sophia" width="100">
