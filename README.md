@@ -193,8 +193,8 @@ sophia/
 
 ### Documentación
 
-* [ ] Ejemplo real de uso (pregunta/respuesta)
-* [ ] Capturas de la interfaz
+* [x] Ejemplo real de uso (pregunta/respuesta)
+* [x] Capturas de la interfaz
 * [x] Archivo `requirements.txt`
 
 ### Futuro
@@ -203,6 +203,7 @@ sophia/
 * [ ] Memoria conversacional persistente entre sesiones (LangGraph)
 * [ ] Razonamiento agéntico: decidir cuándo buscar vs. responder directamente
 * [ ] Ingesta de fuentes adicionales: issues de GitHub, Stack Overflow, changelogs
+* [ ] Reconstrucción automática del índice en despliegues efímeros
 * [ ] Despliegue en Streamlit Community Cloud
 * [ ] Tests automatizados
 
