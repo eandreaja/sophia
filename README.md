@@ -150,7 +150,11 @@ Citando la documentación oficial donde encontró la respuesta:
 
 ### Capturas
 
+Video del flujo completo. desde la pregunta hasta la respuesta con fuentes citadas:
+
 https://github.com/user-attachments/assets/4033a672-9d5d-45a0-91a2-dec11e710ced
+
+![Pantalla de bienvenida](assets/bienvenida.png)
 
 ## ![emoji](assets/emoji.png) Estructura del proyecto
 
