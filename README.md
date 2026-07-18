@@ -8,7 +8,7 @@
 
 > AI Agent que recibe un error técnico de LangChain, LangGraph, RAG, FAISS, Cohere o Streamlit, busca contexto relevante en documentación oficial indexada mediante búsqueda semántica, y devuelve una solución explicada por Claude, todo desde una interfaz web simple.
 
-* Última verificación: 17 de julio de 2026.
+* Última verificación: 18 de julio de 2026.
 
 ## ![emoji](assets/emoji.png) Tabla de contenidos
 
@@ -20,7 +20,7 @@
 * [Instalación](#-instalación)
 * [Uso](#-uso)
   * [Ejemplo: consultar un error](#ejemplo-consultar-un-error)
-  * [Capturas](#capturas)
+  * [Captura](#captura)
 * [Estructura del proyecto](#-estructura-del-proyecto)
 * [Roadmap](#-roadmap)
   * [Core](#core)
@@ -67,6 +67,11 @@ graph LR
     D --> E[Generación<br/>Claude Haiku 4.5]
     E --> F[Respuesta + fuentes citadas]
 ```
+
+> **Nota sobre el término "AI Agent":** Sophia opera actualmente como una cadena RAG
+> (recuperación → generación), no como un agente autónomo con toma de decisiones
+> multi-paso. El roadmap contempla evolucionar hacia comportamiento agéntico real
+> (ver sección [Futuro](#futuro)).
 
 ## ![emoji](assets/emoji.png) Instalación
 
@@ -148,22 +153,27 @@ Citando la documentación oficial donde encontró la respuesta:
 
 ![fuentes](assets/fuentes.png)
 
-### Capturas
+### Captura
 
 Video del flujo completo. desde la pregunta hasta la respuesta con fuentes citadas:
 
 https://github.com/user-attachments/assets/4033a672-9d5d-45a0-91a2-dec11e710ced
-
-![Pantalla de bienvenida](assets/bienvenida.png)
 
 ## ![emoji](assets/emoji.png) Estructura del proyecto
 
 ```text
 sophia/
 ├── assets/
-│   ├── sophia.png                  # Ícono
+│   ├── diagnostico.png             # Diagnóstico
+│   ├── emoji.png                   # Emoji
+│   ├── fuentes.png                 # Fuentes citadas
+│   ├── opciones.png                # Opciones
+│   ├── pregunta.png                # Pregunta
 │   ├── sophia-lockup.png           # Logo + nombre
-│   └── emoji.png
+│   └── sophia.png                  # Ícono
+├── faiss_index_sophia/             # Índice vectorial pre-construido (para deploy)
+│   ├── index.faiss                 # Vectores de embeddings
+│   └── index.pkl                   # Metadatos y mapeo de documentos
 ├── .env.example                    # Plantilla de variables de entorno
 ├── .gitignore
 ├── app.py                          # Interfaz Streamlit
@@ -177,7 +187,7 @@ sophia/
 └── README.md
 ```
 
-> No versionados (generados localmente o excluidos por seguridad, ver `.gitignore`): `faiss_index_sophia/` (índice generado por `ingest.py`), `logs/` (registro de interacciones), `.env` (keys reales).
+> No versionados (generados localmente o excluidos por seguridad, ver `.gitignore`): `logs/` (registro de interacciones), `.env` (keys reales).
 
 ## ![emoji](assets/emoji.png) Roadmap
 
@@ -195,10 +205,10 @@ sophia/
 
 * [x] Ejemplo real de uso (pregunta/respuesta)
 * [x] Capturas de la interfaz
-* [x] Archivo `requirements.txt`
 
 ### Futuro
 
+* [ ] Versión en inglés del README (`README.en.md`), dado que gran parte de la comunidad de LangChain/LangGraph se documenta en ese idioma
 * [ ] Búsqueda híbrida (semántica + keywords) y reranking
 * [ ] Memoria conversacional persistente entre sesiones (LangGraph)
 * [ ] Razonamiento agéntico: decidir cuándo buscar vs. responder directamente
