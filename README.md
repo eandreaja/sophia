@@ -153,6 +153,10 @@ Citando la documentación oficial donde encontró la respuesta:
 
 ![fuentes](assets/fuentes.png)
 
+Incluso ante preguntas fuera de su alcance, Sophia reconoce sus límites en vez de inventar una respuesta:
+
+![límites](assets/límites.png)
+
 ### Captura
 
 Video del flujo completo. desde la pregunta hasta la respuesta con fuentes citadas:
@@ -167,6 +171,7 @@ sophia/
 │   ├── diagnostico.png             # Diagnóstico
 │   ├── emoji.png                   # Emoji
 │   ├── fuentes.png                 # Fuentes citadas
+│   ├── limites.png                 # Límites
 │   ├── opciones.png                # Opciones
 │   ├── pregunta.png                # Pregunta
 │   ├── sophia-lockup.png           # Logo + nombre
